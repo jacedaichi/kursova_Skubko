@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://dchwh0fyiueoq"]
+
+[ext_resource type="Texture2D" uid="uid://c1anauccmmwg7" path="res://sprites/gui/9 Other/3 Skill icons/Skillicon7_10.png" id="1_5sspm"]
+[ext_resource type="Script" path="res://scripts/win_flag.gd" id="1_prnkk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hhiox"]
+
+[node name="Skillicon710" type="Area2D"]
+position = Vector2(3992, 81)
+script = ExtResource("1_prnkk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(3, 3)
+shape = SubResource("RectangleShape2D_hhiox")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.788235, 0, 0, 1)
+texture = ExtResource("1_5sspm")

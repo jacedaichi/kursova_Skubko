@@ -1,0 +1,165 @@
+[gd_scene load_steps=17 format=3 uid="uid://c20w4ur8brdhx"]
+
+[ext_resource type="FontFile" uid="uid://ck1trnbjuouv1" path="res://sprites/gui/10 Font/CyberpunkCraftpixPixel.otf" id="1_2k08u"]
+[ext_resource type="Script" path="res://scripts/pause.gd" id="1_48o8w"]
+[ext_resource type="Texture2D" uid="uid://cupdftr5va5pe" path="res://sprites/gui/6 Buttons/1/1_04.png" id="2_j8t3i"]
+[ext_resource type="Shader" path="res://scripts/pause.gdshader" id="2_v7ns8"]
+[ext_resource type="Texture2D" uid="uid://ps773wj7e3u1" path="res://sprites/gui/6 Buttons/1/1_08.png" id="3_schmr"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_e1xge"]
+shader = ExtResource("2_v7ns8")
+shader_parameter/lod = 0.73
+
+[sub_resource type="LabelSettings" id="LabelSettings_fy5v2"]
+font = ExtResource("1_2k08u")
+font_size = 32
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wluk6"]
+texture = ExtResource("2_j8t3i")
+texture_margin_left = 4.0
+texture_margin_top = 4.0
+texture_margin_right = 4.0
+texture_margin_bottom = 4.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ks0p4"]
+texture = ExtResource("3_schmr")
+texture_margin_left = 4.0
+texture_margin_top = 4.0
+texture_margin_right = 4.0
+texture_margin_bottom = 4.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_l8faf"]
+texture = ExtResource("2_j8t3i")
+texture_margin_left = 6.0
+texture_margin_top = 4.0
+texture_margin_right = 6.0
+texture_margin_bottom = 4.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2o6k7"]
+texture = ExtResource("3_schmr")
+texture_margin_left = 6.0
+texture_margin_top = 4.0
+texture_margin_right = 6.0
+texture_margin_bottom = 4.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_vymgk"]
+texture = ExtResource("2_j8t3i")
+texture_margin_left = 4.0
+texture_margin_top = 4.0
+texture_margin_right = 4.0
+texture_margin_bottom = 4.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3avrg"]
+texture = ExtResource("3_schmr")
+texture_margin_left = 4.0
+texture_margin_top = 4.0
+texture_margin_right = 4.0
+texture_margin_bottom = 4.0
+
+[sub_resource type="Animation" id="Animation_j62cg"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:material:shader_parameter/lod")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.73]
+}
+
+[sub_resource type="Animation" id="Animation_c1qbp"]
+resource_name = "blur"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:material:shader_parameter/lod")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 0.73]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_g4ath"]
+_data = {
+"RESET": SubResource("Animation_j62cg"),
+"blur": SubResource("Animation_c1qbp")
+}
+
+[node name="Pause" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_48o8w")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_e1xge")
+layout_mode = 0
+offset_left = -288.0
+offset_top = -164.0
+offset_right = 290.0
+offset_bottom = 165.0
+
+[node name="Camera2D" type="Camera2D" parent="."]
+scale = Vector2(1, 2.04)
+zoom = Vector2(0.56, 0.56)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Pause"
+label_settings = SubResource("LabelSettings_fy5v2")
+horizontal_alignment = 1
+
+[node name="Resume" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_2k08u")
+theme_override_styles/normal = SubResource("StyleBoxTexture_wluk6")
+theme_override_styles/hover = SubResource("StyleBoxTexture_wluk6")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_ks0p4")
+text = "Resume"
+
+[node name="Options" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_2k08u")
+theme_override_styles/normal = SubResource("StyleBoxTexture_l8faf")
+theme_override_styles/hover = SubResource("StyleBoxTexture_l8faf")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_2o6k7")
+text = "Options"
+
+[node name="Quit" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_fonts/font = ExtResource("1_2k08u")
+theme_override_styles/normal = SubResource("StyleBoxTexture_vymgk")
+theme_override_styles/hover = SubResource("StyleBoxTexture_vymgk")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_3avrg")
+text = "Exit"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_g4ath")
+}
+
+[connection signal="pressed" from="VBoxContainer/Resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="VBoxContainer/Options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="VBoxContainer/Quit" to="." method="_on_quit_pressed"]

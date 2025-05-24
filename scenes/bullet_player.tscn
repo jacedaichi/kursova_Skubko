@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://dv1jui3vdhieq"]
+
+[ext_resource type="Script" path="res://scripts/bullet_player.gd" id="1_2qekh"]
+[ext_resource type="Texture2D" uid="uid://bstxrhlmhsaj1" path="res://sprites/5 Bullets/10.png" id="1_w8jfe"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_myp1j"]
+radius = 1.0
+
+[node name="pulya" type="CharacterBody2D" groups=["bullet_player"]]
+scale = Vector2(3, 3)
+script = ExtResource("1_2qekh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_myp1j")
+
+[node name="10" type="Sprite2D" parent="."]
+position = Vector2(-1.19209e-07, 1.19209e-07)
+scale = Vector2(0.333333, 0.333333)
+texture = ExtResource("1_w8jfe")
